@@ -5,8 +5,6 @@ import * as Components from './components.ts';
 export class SocialApp {
   private currentUser: User | null = null;
   private posts: Post[] = [];
-  private isLoggedIn = false;
-  private currentPage = 'feed';
 
   async init(): Promise<void> {
     const app = document.querySelector<HTMLDivElement>('#app');
@@ -17,7 +15,6 @@ export class SocialApp {
     if (savedUser) {
       this.currentUser = JSON.parse(savedUser);
       API.setCurrentUser(this.currentUser);
-      this.isLoggedIn = true;
       await this.showMainApp(app);
     } else {
       this.showLogin(app);
@@ -40,11 +37,12 @@ export class SocialApp {
       try {
         this.currentUser = await API.login(email, password);
         API.setCurrentUser(this.currentUser);
-        this.isLoggedIn = true;
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
         this.showMainApp(app);
       } catch (error) {
-        alert('Erro ao fazer login');
+        const errorMsg = error instanceof Error ? error.message : 'Erro desconhecido';
+        alert('Erro ao fazer login: ' + errorMsg);
+        console.error('Erro ao fazer login:', error);
       }
     });
 
@@ -75,11 +73,13 @@ export class SocialApp {
       }
 
       try {
-        const newUser = await API.register(username, email, password);
+        await API.register(username, email, password);
         alert('Conta criada com sucesso! Faça login para continuar.');
         this.showLogin(app);
       } catch (error) {
-        alert('Erro ao criar conta');
+        const errorMsg = error instanceof Error ? error.message : 'Erro desconhecido';
+        alert('Erro ao criar conta: ' + errorMsg);
+        console.error('Erro ao criar conta:', error);
       }
     });
 
@@ -162,7 +162,7 @@ export class SocialApp {
 
   private setupEventListeners(app: HTMLDivElement): void {
     // Post button
-    const postBtn = document.getElementById('postBtn');
+    const postBtn = document.getElementById('postBtn') as HTMLButtonElement;
     const postText = document.getElementById('postText') as HTMLTextAreaElement;
 
     postText?.addEventListener('input', () => {
@@ -175,7 +175,7 @@ export class SocialApp {
         try {
           await API.createPost(content);
           postText.value = '';
-          postBtn.disabled = true;
+          (postBtn as HTMLButtonElement).disabled = true;
           await this.loadPosts();
         } catch (error) {
           alert('Erro ao publicar post');
@@ -233,15 +233,12 @@ export class SocialApp {
     logoutBtn?.addEventListener('click', () => {
       API.setCurrentUser(null);
       localStorage.removeItem('currentUser');
-      this.isLoggedIn = false;
       this.currentUser = null;
       this.init();
     });
   }
 
   private navigateToPage(page: string, app: HTMLDivElement): void {
-    this.currentPage = page;
-
     const feedContainer = app.querySelector('.feed-container') as HTMLElement;
     if (!feedContainer) return;
 
@@ -350,7 +347,7 @@ export class SocialApp {
   }
 
   private setupPostListeners(): void {
-    const postBtn = document.getElementById('postBtn');
+    const postBtn = document.getElementById('postBtn') as HTMLButtonElement;
     const postText = document.getElementById('postText') as HTMLTextAreaElement;
 
     postText?.addEventListener('input', () => {
@@ -363,7 +360,7 @@ export class SocialApp {
         try {
           await API.createPost(content);
           postText.value = '';
-          postBtn.disabled = true;
+          (postBtn as HTMLButtonElement).disabled = true;
           await this.loadPosts();
           this.renderPosts();
         } catch (error) {

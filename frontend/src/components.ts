@@ -197,7 +197,7 @@ export function createPostCard(post: Post): HTMLElement {
       <button class="post-options">⋯</button>
     </div>
     <div class="post-content">
-      <p>${post.content || post.description || 'Post sem conteúdo'}</p>
+      <p>${post.content || 'Post sem conteúdo'}</p>
       ${post.image ? `<img src="${post.image}" alt="Post" class="post-image">` : ''}
     </div>
     <div class="post-stats">

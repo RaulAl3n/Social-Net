@@ -26,13 +26,9 @@ export async function login(email: string, password: string): Promise<User> {
       body: JSON.stringify({ email, password })
     });
 
-    if (!response.ok) {
-      throw new Error(`Erro HTTP ${response.status}`);
-    }
-
     const data = await response.json();
     
-    if (data.success && data.user) {
+    if (response.ok && data.success && data.user) {
       currentUser = data.user;
       return data.user;
     } else {
@@ -57,13 +53,9 @@ export async function register(username: string, email: string, password: string
       body: JSON.stringify({ username, email, passwordHash: password })
     });
 
-    if (!response.ok) {
-      throw new Error(`Erro HTTP ${response.status}`);
-    }
-
     const data = await response.json();
     
-    if (data.success && data.user) {
+    if (response.ok && data.success && data.user) {
       return data.user;
     } else {
       throw new Error(data.message || 'Falha ao registrar');
