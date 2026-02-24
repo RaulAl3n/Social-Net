@@ -7,20 +7,20 @@ export function createLoginForm(): HTMLElement {
     <div class="login-box">
       <div class="login-header">
         <h1>SocialNet</h1>
-        <p>Conecte-se com seus amigos</p>
+        <p>Connect with your friends</p>
       </div>
       <form id="loginForm">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="seu@email.com">
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
         </div>
         <div class="form-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" name="password" required placeholder="Sua senha">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="your password">
         </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">Enter</button>
         <p class="login-footer">
-          Não tem conta? <button type="button" id="toggleRegister" class="link-btn">Criar conta</button>
+          Don't have an account? <button type="button" id="toggleRegister" class="link-btn">Create account</button>
         </p>
       </form>
     </div>
@@ -39,24 +39,24 @@ export function createRegisterForm(): HTMLElement {
       </div>
       <form id="registerForm">
         <div class="form-group">
-          <label for="username">Nome de usuário</label>
-          <input type="text" id="username" name="username" required placeholder="Seu nome">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required placeholder="Your name">
         </div>
         <div class="form-group">
           <label for="regEmail">Email</label>
-          <input type="email" id="regEmail" name="email" required placeholder="seu@email.com">
+          <input type="email" id="regEmail" name="email" required placeholder="your@email.com">
         </div>
         <div class="form-group">
-          <label for="regPassword">Senha</label>
-          <input type="password" id="regPassword" name="password" required placeholder="Crie uma senha">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" name="password" required placeholder="Create a password">
         </div>
         <div class="form-group">
-          <label for="confirmPassword">Confirmar senha</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirme sua senha">
+          <label for="confirmPassword">Confirm your password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
         </div>
-        <button type="submit" class="btn btn-primary">Criar Conta</button>
+        <button type="submit" class="btn btn-primary">Create account</button>
         <p class="login-footer">
-          Já tem conta? <button type="button" id="toggleLogin" class="link-btn">Fazer login</button>
+          Já tem conta? <button type="button" id="toggleLogin" class="link-btn">Log in</button>
         </p>
       </form>
     </div>

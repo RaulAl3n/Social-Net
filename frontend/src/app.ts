@@ -52,6 +52,18 @@ export class SocialApp {
     });
   }
 
+  private showToast(message: string, type: 'success' | 'error' = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = message;
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 2500);
+    }
+
   private showRegister(app: HTMLDivElement): void {
     app.innerHTML = '';
     const registerForm = Components.createRegisterForm();
@@ -74,7 +86,7 @@ export class SocialApp {
 
       try {
         await API.register(username, email, password);
-        alert('Conta criada com sucesso! Faça login para continuar.');
+        this.showToast('🎉 Bem-vindo ao SocialNet! Sua conta foi criada com sucesso 🚀');
         this.showLogin(app);
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : 'Erro desconhecido';

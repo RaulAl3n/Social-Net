@@ -864,3 +864,29 @@ html, body {
   font-size: 14px;
   color: var(--text-secondary);
 }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.toast.success {
+  border-left: 5px solid var(--success-color);
+}
+
+.toast.error {
+  border-left: 5px solid var(--danger-color);
+}
