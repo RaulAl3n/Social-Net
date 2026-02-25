@@ -10,7 +10,6 @@ export class SocialApp {
     const app = document.querySelector<HTMLDivElement>('#app');
     if (!app) return;
 
-    // Check if user is already logged in (from localStorage)
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
       this.currentUser = JSON.parse(savedUser);
@@ -86,7 +85,7 @@ export class SocialApp {
 
       try {
         await API.register(username, email, password);
-        this.showToast('🎉 Bem-vindo ao SocialNet! Sua conta foi criada com sucesso 🚀');
+        this.showToast('🎉 Welcome to SocialNet! Your account was created succesfully 🚀');
         this.showLogin(app);
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : 'Erro desconhecido';
@@ -107,7 +106,6 @@ export class SocialApp {
     app.innerHTML = '';
     app.className = 'app-container';
 
-    // Create main layout
     const nav = Components.createNav(this.currentUser);
     const main = Components.createMainLayout();
     const sidebar = Components.createSidebar(this.currentUser);
@@ -115,18 +113,15 @@ export class SocialApp {
     app.appendChild(nav);
     app.appendChild(main);
 
-    // Fill sidebar right
     const sidebarRight = main.querySelector('.sidebar-right') as HTMLElement;
     sidebarRight.appendChild(sidebar);
 
-    // Fill feed container
     const feedContainer = main.querySelector('.feed-container') as HTMLElement;
     const composer = Components.createPostComposer(this.currentUser);
     const feed = Components.createFeed();
     feedContainer.appendChild(composer);
     feedContainer.appendChild(feed);
 
-    // Load and display posts
     await this.loadPosts();
     this.setupEventListeners(app);
   }
@@ -153,7 +148,6 @@ export class SocialApp {
     }
 
     this.posts.forEach(post => {
-      // Garantir que o post tenha os campos mapeados corretamente
       const mappedPost: Post = {
         id: (post as any).postId || (post as any).id || 0,
         authorId: (post as any).authorId || 1,
@@ -173,7 +167,6 @@ export class SocialApp {
   }
 
   private setupEventListeners(app: HTMLDivElement): void {
-    // Post button
     const postBtn = document.getElementById('postBtn') as HTMLButtonElement;
     const postText = document.getElementById('postText') as HTMLTextAreaElement;
 
@@ -195,7 +188,6 @@ export class SocialApp {
       }
     });
 
-    // Like buttons
     app.addEventListener('click', async (e) => {
       const target = e.target as HTMLElement;
       if (target.closest('[data-action="like"]')) {
@@ -218,7 +210,6 @@ export class SocialApp {
       }
     });
 
-    // Navigation
     app.addEventListener('click', (e) => {
       const navItem = (e.target as HTMLElement).closest('.nav-item');
       if (navItem) {
@@ -231,7 +222,6 @@ export class SocialApp {
       }
     });
 
-    // View Profile from sidebar
     const viewProfileBtn = document.querySelector('.sidebar-card .btn.btn-primary');
     viewProfileBtn?.addEventListener('click', () => {
       const profileNavItem = document.querySelector('[data-page="profile"]') as HTMLElement;
@@ -240,7 +230,6 @@ export class SocialApp {
       }
     });
 
-    // Logout
     const logoutBtn = document.getElementById('logoutBtn');
     logoutBtn?.addEventListener('click', () => {
       API.setCurrentUser(null);
@@ -297,13 +286,11 @@ export class SocialApp {
     const profilePage = Components.createProfilePage(this.currentUser);
     feedContainer.appendChild(profilePage);
 
-    // Setup profile page events
     const editProfileBtn = document.getElementById('editProfileBtn');
     editProfileBtn?.addEventListener('click', () => {
       this.showEditProfileModal(app);
     });
 
-    // Tab navigation
     document.querySelectorAll('.tab-button').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();

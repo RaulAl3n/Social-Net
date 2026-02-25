@@ -2,7 +2,6 @@ import type { User, Post } from './types.ts';
 
 const API_BASE = 'http://localhost:9090/api';
 
-// Variável para armazenar o usuário atual
 let currentUser: User | null = null;
 
 export function getCurrentUser(): User | null {
@@ -13,9 +12,7 @@ export function setCurrentUser(user: User | null): void {
   currentUser = user;
 }
 
-/**
- * Fazer login - POST /api/auth/login
- */
+
 export async function login(email: string, password: string): Promise<User> {
   try {
     const response = await fetch(`${API_BASE}/auth/login`, {
@@ -40,9 +37,7 @@ export async function login(email: string, password: string): Promise<User> {
   }
 }
 
-/**
- * Registrar novo usuário - POST /api/auth/register
- */
+
 export async function register(username: string, email: string, password: string): Promise<User> {
   try {
     const response = await fetch(`${API_BASE}/auth/register`, {
@@ -66,9 +61,7 @@ export async function register(username: string, email: string, password: string
   }
 }
 
-/**
- * Buscar todos os posts - GET /api/posts
- */
+
 export async function getPosts(): Promise<Post[]> {
   try {
     const response = await fetch(`${API_BASE}/posts`, {
@@ -90,9 +83,7 @@ export async function getPosts(): Promise<Post[]> {
   }
 }
 
-/**
- * Criar novo post - POST /api/posts
- */
+
 export async function createPost(content: string, image?: string): Promise<Post> {
   if (!currentUser) {
     throw new Error('Usuário não autenticado');
@@ -129,9 +120,7 @@ export async function createPost(content: string, image?: string): Promise<Post>
   }
 }
 
-/**
- * Curtir um post - POST /api/posts/{id}/like
- */
+
 export async function likePost(postId: number): Promise<void> {
   try {
     const response = await fetch(`${API_BASE}/posts/${postId}/like`, {
@@ -156,16 +145,9 @@ export async function likePost(postId: number): Promise<void> {
   }
 }
 
-/**
- * Remover curtida de um post - DELETE /api/posts/{id}/unlike (ou POST com descurtir)
- * OBS: Se o seu backend não tem esse endpoint, você pode criar um ou usar likePost com toggle
- */
+
 export async function unlikePost(postId: number): Promise<void> {
   try {
-    // Se você implementar um endpoint de unlike no backend, use:
-    // const response = await fetch(`${API_BASE}/posts/${postId}/unlike`, { method: 'POST' });
-    
-    // Por enquanto, recarregue os posts
     console.log('Unlike não implementado no backend ainda');
   } catch (error) {
     console.error('Erro ao remover curtida:', error);
@@ -173,9 +155,7 @@ export async function unlikePost(postId: number): Promise<void> {
   }
 }
 
-/**
- * Deletar um post - DELETE /api/posts/{id}
- */
+
 export async function deletePost(postId: number): Promise<void> {
   try {
     const response = await fetch(`${API_BASE}/posts/${postId}`, {
@@ -200,9 +180,7 @@ export async function deletePost(postId: number): Promise<void> {
   }
 }
 
-/**
- * Buscar usuário por ID - GET /api/users/{id}
- */
+
 export async function getUserById(userId: number): Promise<User> {
   try {
     const response = await fetch(`${API_BASE}/users/${userId}`, {

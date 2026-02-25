@@ -29,7 +29,7 @@ html, body {
   color: var(--text-primary);
 }
 
-/* ===== FORMS & LOGIN ===== */
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -110,7 +110,7 @@ html, body {
   text-decoration: underline;
 }
 
-/* ===== BUTTONS ===== */
+
 .btn {
   padding: 10px 20px;
   border: none;
@@ -153,7 +153,7 @@ html, body {
   width: 100%;
 }
 
-/* ===== NAVBAR ===== */
+
 .navbar {
   background-color: var(--dark-bg);
   border-bottom: 1px solid var(--border-color);
@@ -259,7 +259,7 @@ html, body {
   font-size: 18px;
 }
 
-/* ===== MAIN LAYOUT ===== */
+
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -291,7 +291,7 @@ html, body {
   }
 }
 
-/* ===== POST COMPOSER ===== */
+
 .post-composer {
   background-color: var(--dark-bg);
   border: 1px solid var(--border-color);
@@ -356,7 +356,7 @@ html, body {
   background-color: rgba(29, 155, 240, 0.1);
 }
 
-/* ===== FEED ===== */
+
 .feed {
   display: flex;
   flex-direction: column;
@@ -367,7 +367,7 @@ html, body {
   min-height: 100vh;
 }
 
-/* ===== POST CARD ===== */
+
 .post-card {
   background-color: var(--dark-bg);
   border: 1px solid var(--border-color);
@@ -477,7 +477,7 @@ html, body {
   color: #e74c3c;
 }
 
-/* ===== SIDEBAR ===== */
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -580,7 +580,7 @@ html, body {
   margin: 4px 0 0 0;
 }
 
-/* ===== ANIMATIONS ===== */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -595,7 +595,7 @@ html, body {
 .post-card {
   animation: fadeIn 0.3s ease-out;
 }
-/* ===== PROFILE PAGE ===== */
+
 .profile-page {
   width: 100%;
 }
@@ -722,7 +722,6 @@ html, body {
   display: block;
 }
 
-/* ===== MODALS ===== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -808,7 +807,6 @@ html, body {
   max-width: 150px;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .profile-info {
     padding: 0 16px 16px 16px;
@@ -834,7 +832,6 @@ html, body {
   }
 }
 
-/* ===== EMPTY STATE ===== */
 .empty-state {
   display: flex;
   align-items: center;
