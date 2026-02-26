@@ -48,7 +48,18 @@ CREATE TABLE profiles (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- SQLite
+CREATE TABLE posts (
+    postId INTEGER PRIMARY KEY,
+    postOwner TEXT NOT NULL,
+    description TEXT NOT NULL UNIQUE,
+    likes INTEGER DEFAULT 0,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (postOwner) REFERENCES users(username)
+);
    ```
+
 # How to run the project
 
 ## 1. Clone and install:
