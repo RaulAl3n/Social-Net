@@ -1,1 +1,48 @@
+# =========================
+# Java / Maven
+# =========================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Maven wrapper files
+.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+*.env
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+*.swp
+
 database.txt
